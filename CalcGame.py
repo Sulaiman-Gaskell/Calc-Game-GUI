@@ -14,7 +14,7 @@ welcome.resizable(False, False)
 welcome.configure(bg='black')
 
 
-label = ttk.Label(welcome,text='V1.0.0', foreground='white',background='black').pack()
+label = ttk.Label(welcome,text='V1.0.1', foreground='white',background='black').pack()
 button = tk.Button(
     welcome,
     text='''Welcome to the Calculator game!
@@ -112,7 +112,7 @@ while gameNum < 6:
     #question label
     question = tk.Label(
         root,
-        text = str(num1) + '    ?    ' + str(num2) + ' = ' + str(answer),
+        text = str(num1) + '    _______    ' + str(num2) + ' = ' + str(answer),
         bg = 'black',
         fg = 'white',
         font=('Helvetica bold',50),
