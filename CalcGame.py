@@ -141,9 +141,10 @@ while gameNum < 6:
     #addition button
     a = tk.Button(
         root,
-        text = '  Addition   ',
+        text = 'Addition',
         bg = 'black',
         fg = 'green',
+        width=10,
         activebackground = 'black',
         activeforeground = 'white',
         font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
@@ -159,6 +160,7 @@ while gameNum < 6:
         text = 'Subtraction',
         bg = 'black',
         fg = 'blue',
+        width=10,
         activebackground = 'black',
         activeforeground = 'white',
         font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
@@ -170,9 +172,10 @@ while gameNum < 6:
     #Multiply button
     m = tk.Button(
         root,
-        text = '   Multiply   ',
+        text = 'Multiply',
         bg = 'black',
         fg = 'yellow',
+        width=10,
         activebackground = 'black',
         activeforeground = 'white',
         font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
@@ -184,9 +187,10 @@ while gameNum < 6:
     #division button
     d = tk.Button(
         root,
-        text = '   Division  ',
+        text = 'Division',
         bg = 'black',
         fg = 'purple',
+        width=10,
         activebackground = 'black',
         activeforeground = 'white',
         font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
