@@ -1,10 +1,10 @@
-import tkinter as tk
-from tkinter import *
-from tkinter import ttk
-import time
 import random
 import sys
+import time
+import tkinter as tk
 from subprocess import call
+from tkinter import *
+from tkinter import ttk
 
 # Welcome menu
 welcome = tk.Tk()
@@ -14,7 +14,7 @@ welcome.resizable(False, False)
 welcome.configure(bg='black')
 
 
-label = ttk.Label(welcome,text='V1.0.1', foreground='white',background='black').pack()
+label = ttk.Label(welcome,text='V1.0.2', foreground='white',background='black').pack()
 button = tk.Button(
     welcome,
     text='''Welcome to the Calculator game!
@@ -44,7 +44,7 @@ counter = Label(
     root,
     bg = 'black',
     fg = 'white',
-    font=('Helvetica bold',100),
+    font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
 )
 
 
@@ -90,7 +90,7 @@ while gameNum < 6:
         text = '',
         fg = 'white',
         bg = 'black',
-        font=('Helvetica bold',50),
+        font=('Helvetica bold',int(root.winfo_screenwidth() / 32)),
     )
     oCorrect.place(x=0,y=0)
 
@@ -100,24 +100,25 @@ while gameNum < 6:
         text = str(gameNum)+'/5',
         bg='black',
         fg='white',
-        font=('Helvetica bold',50),
+        font=('Helvetica bold',int(root.winfo_screenwidth() / 32)),
     )
-    gameNumO.place(x=1400,y=0)
+    gameNumO.place(x=root.winfo_screenwidth() / 1.097,y=0)
 
     #quick design line
     colour ="#"+("%06x"%random.randint(0,16777215))
-    line =Frame(root, bg=colour, height=5,width=1700)
-    line.place(y=145)
+    line =Frame(root, bg=colour, height=root.winfo_screenheight() / 172.8,width=root.winfo_screenwidth() / 0.9)
+    line.place(y=root.winfo_screenheight() /5.959 )
+
 
     #question label
-    question = tk.Label(
+    question = tk.Label( 
         root,
         text = str(num1) + '    _______    ' + str(num2) + ' = ' + str(answer),
         bg = 'black',
         fg = 'white',
-        font=('Helvetica bold',50),
+        font=('Helvetica bold',int(root.winfo_screenwidth() / 32)),
     )
-    question.place(x=500, y=150)
+    question.place(x=root.winfo_screenwidth() / 3.072, y=root.winfo_screenheight() / 5.76)
 
 #######################################################
     def choice(pOperation):
@@ -140,58 +141,59 @@ while gameNum < 6:
     #addition button
     a = tk.Button(
         root,
-        text = '  Addition  ',
+        text = '  Addition   ',
         bg = 'black',
         fg = 'green',
         activebackground = 'black',
         activeforeground = 'white',
-        font=('Helvetica bold',100),
+        font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
         command=lambda: choice(1),
         cursor= 'hand2',
     )
-    a.place(x=0, y=340)
+    a.grid(column=0, row=0, sticky=tk.E, padx=0,pady=(0.395*root.winfo_screenheight(),0))
+
 
     #subtraction button
     s = tk.Button(
         root,
-        text = ' Subtraction',
+        text = 'Subtraction',
         bg = 'black',
         fg = 'blue',
         activebackground = 'black',
         activeforeground = 'white',
-        font=('Helvetica bold',100),
+        font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
         command=lambda: choice(2),
         cursor= 'hand2',
     )
-    s.place(x=745,y=340)
+    s.grid(column=1, row=0,sticky=W, padx=0,pady=(0.395*root.winfo_screenheight(),0))
 
     #Multiply button
     m = tk.Button(
         root,
-        text = '  Multiply   ',
+        text = '   Multiply   ',
         bg = 'black',
         fg = 'yellow',
         activebackground = 'black',
         activeforeground = 'white',
-        font=('Helvetica bold',100),
+        font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
         command=lambda: choice(3),
         cursor= 'hand2',  
     )
-    m.place(x=0,y=600)
+    m.grid(column=0, row=1, sticky=tk.E, padx=0,pady=0)
 
     #division button
     d = tk.Button(
         root,
-        text = ' Division     ',
+        text = '   Division  ',
         bg = 'black',
         fg = 'purple',
         activebackground = 'black',
         activeforeground = 'white',
-        font=('Helvetica bold',100),
+        font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
         command=lambda: choice(4),
         cursor= 'hand2',
     )
-    d.place(x=745,y=600)
+    d.grid(column=1, row=1,sticky=W, padx=0,pady=0)
     gameNum +=1
     root.update()
     d.wait_variable(var)
