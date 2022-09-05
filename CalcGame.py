@@ -5,16 +5,21 @@ import tkinter as tk
 from subprocess import call
 from tkinter import *
 from tkinter import ttk
+from turtle import width
 
 # Welcome menu
-welcome = tk.Tk()
-welcome.title('Calc_Game launcher')
-welcome.geometry('600x400+50+50')
-welcome.resizable(False, False)
+welcome = Tk()
+welcome.title('Calc_Game 2 launcher')
 welcome.configure(bg='black')
+width, height = welcome.winfo_screenwidth(), welcome.winfo_screenheight()
+welcome.geometry('600x400')
 
+def on_closing():
+    sys.exit()
 
-label = ttk.Label(welcome,text='V1.0.2', foreground='white',background='black').pack()
+welcome.protocol("WM_DELETE_WINDOW", on_closing)
+
+label = ttk.Label(welcome,text='V1.1.0', foreground='white',background='black').pack()
 button = tk.Button(
     welcome,
     text='''Welcome to the Calculator game!
@@ -33,12 +38,29 @@ welcome.mainloop()
 
 # Count down
 root = tk.Tk()
-root.title('Calc_game')
-root.geometry('600x400+50+50')
+root.title('Calc_game 2')
 root.resizable(False, False)
 root.configure(bg = 'black')
 root.attributes('-fullscreen', True)
 var = tk.IntVar()
+root.protocol("WM_DELETE_WINDOW", on_closing)
+
+#line design
+width = root.winfo_screenwidth() / 1000
+line =Frame(root, bg='white', height=root.winfo_screenheight() / 172.8,width=width)
+line.place(y=root.winfo_screenheight() /5.959 )
+root.update()
+time.sleep(0.1)
+
+while width < root.winfo_screenwidth():
+    width += 15
+    line =Frame(root, bg='white', height=root.winfo_screenheight() / 172.8,width=width)
+    line.place(y=root.winfo_screenheight() /5.959 )
+    root.update()
+    time.sleep(0.000001)
+
+pB = Frame(root,  bg='white', height=root.winfo_screenheight() / 172.8,width=root.winfo_screenwidth() / 5)
+pBCount = 0
 
 counter = Label(
     root,
@@ -68,9 +90,11 @@ root.update()
 time.sleep(1)
 counter.destroy()
 
+
+
 #Main game
 gameNum = 1
-while gameNum < 6:
+while pBCount < 5:
     num1 = random.randint(2,100)
     num2 = random.randint(2,10)
 
@@ -97,17 +121,14 @@ while gameNum < 6:
     #Info labels
     gameNumO = tk.Label(
         root,
-        text = str(gameNum)+'/5',
+        text = 'Question ' + str(gameNum),
         bg='black',
         fg='white',
         font=('Helvetica bold',int(root.winfo_screenwidth() / 32)),
     )
-    gameNumO.place(x=root.winfo_screenwidth() / 1.097,y=0)
+    gameNumO.place(x=root.winfo_screenwidth() / 1.375,y=0)
+    
 
-    #quick design line
-    colour ="#"+("%06x"%random.randint(0,16777215))
-    line =Frame(root, bg=colour, height=root.winfo_screenheight() / 172.8,width=root.winfo_screenwidth() / 0.9)
-    line.place(y=root.winfo_screenheight() /5.959 )
 
 
     #question label
@@ -120,22 +141,31 @@ while gameNum < 6:
     )
     question.place(x=root.winfo_screenwidth() / 3.072, y=root.winfo_screenheight() / 5.76)
 
+
 #######################################################
     def choice(pOperation):
         var.set(1)
         global isCorrect
-        
+        global pBCount
         if pOperation == operation:
+            pBCount += 1
             isCorrect = 'Correct!'
             oCorrect.configure(fg = 'green')
+            pB.configure(bg='green')
+            pB.configure(width=root.winfo_screenwidth() / 5 * pBCount)
+            pB.place(y=root.winfo_screenheight() /5.959)
         else:
             isCorrect = 'Incorrect'
             oCorrect.configure(fg = 'red')
             #ouput
 
+        a.configure(state=DISABLED)
+        s.configure(state=DISABLED)
+        m.configure(state=DISABLED)
+        d.configure(state=DISABLED)
         oCorrect.configure(text=isCorrect)
         root.update()
-        time.sleep(2)
+        time.sleep(1.5)
         oCorrect.configure(text=' ')
 
     #addition button
@@ -150,8 +180,13 @@ while gameNum < 6:
         font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
         command=lambda: choice(1),
         cursor= 'hand2',
+        state=DISABLED
     )
+    root.update()
+    time.sleep(0.2)
     a.grid(column=0, row=0, sticky=tk.E, padx=0,pady=(0.395*root.winfo_screenheight(),0))
+    root.update()
+    time.sleep(0.1)
 
 
     #subtraction button
@@ -166,8 +201,11 @@ while gameNum < 6:
         font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
         command=lambda: choice(2),
         cursor= 'hand2',
+        state=DISABLED
     )
     s.grid(column=1, row=0,sticky=W, padx=0,pady=(0.395*root.winfo_screenheight(),0))
+    root.update()
+    time.sleep(0.1)
 
     #Multiply button
     m = tk.Button(
@@ -180,9 +218,12 @@ while gameNum < 6:
         activeforeground = 'white',
         font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
         command=lambda: choice(3),
-        cursor= 'hand2',  
+        cursor= 'hand2',
+        state=DISABLED  
     )
     m.grid(column=0, row=1, sticky=tk.E, padx=0,pady=0)
+    root.update()
+    time.sleep(0.1)
 
     #division button
     d = tk.Button(
@@ -196,12 +237,23 @@ while gameNum < 6:
         font=('Helvetica bold',int(root.winfo_screenwidth() / 16)),
         command=lambda: choice(4),
         cursor= 'hand2',
+        state=DISABLED
     )
     d.grid(column=1, row=1,sticky=W, padx=0,pady=0)
+    a.configure(state=NORMAL)
+    s.configure(state=NORMAL)
+    m.configure(state=NORMAL)
+    d.configure(state=NORMAL)
+    root.update()
+    time.sleep(0.2)
+
     gameNum +=1
+
+
+
+
     root.update()
     d.wait_variable(var)
-    
     question.configure(text='')
 
 
