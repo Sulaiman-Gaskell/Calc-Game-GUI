@@ -2,7 +2,13 @@
 Changelog
 *********************
 
-V1.0.0:
+
+V1.2.0:
+    NEW: Difficulty selector; Easy, medium hard questions
+    Other changes:
+        Delayed question placement
+
+V1.1.0:
     NEW: Added some animations to the main game:
         Line and button introduction
     Other changes:
@@ -10,7 +16,6 @@ V1.0.0:
         Launcher size can now be resized
         Changed questio info
         Reduced length of the showing of results of questions (2s --> 1.5s)
-        Changed welcome msg
 
     Bug fixes:
         Spam clicking on a button called the game to bug out- fixed by disabling buttons at the right time
