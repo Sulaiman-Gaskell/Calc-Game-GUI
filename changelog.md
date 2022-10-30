@@ -2,6 +2,9 @@
 Changelog
 *********************
 
+V1.3.0:
+    NEW: End screen; choose to play again or exit to the launcher
+    This is currently a work in progress and currently is only for functionality. 
 
 V1.2.0:
     NEW: Difficulty selector; Easy, medium hard questions

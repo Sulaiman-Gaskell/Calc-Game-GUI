@@ -143,7 +143,7 @@ while True:
 
     #Main game
     gameNum = 1
-    while pBCount < 5:
+    while pBCount < 1: ##################
         if difficulty == 1:
             num1 = random.randint(25,100)
             num2 = random.randint(2,25)
@@ -312,10 +312,69 @@ while True:
         root.update()
         d.wait_variable(var)
         question.configure(text='')
+
+    break
     
+
+root.destroy()
+root = tk.Tk()
+root.title('Calc_game 2')
+root.resizable(False, False)
+root.configure(bg = 'black')
+root.attributes('-fullscreen', True)
+var = tk.IntVar()
+root.protocol("WM_DELETE_WINDOW", on_closing)
+
+finishTxt = tk.Label(
+    root,
+    text = 'Well done you completed this difficulty!',
+    bg = 'black',
+    fg = 'green',
+    font = ('Helvetica bold',int(root.winfo_screenwidth() / 32)),
+
+).pack()
+
+
+def com(wC):
     root.destroy()
-    call(['python', 'launcher.py'])
-    sys.exit()
+    if wC == 1:
+        call(['python', 'CalcGame.py'])
+        sys.exit()
+    elif wC == 2:
+        call(['python', 'launcher.py'])
+        sys.exit()
+
+pA = tk.Button(
+    root,
+    text = 'Play again',
+    bg = 'black',
+    fg = 'white',
+    font = ('Helvetica bold',int(root.winfo_screenwidth() / 32)),
+    activebackground = 'black',
+    activeforeground = 'white',
+    cursor= 'hand2',
+    command = lambda: com(1),
+
+).pack(pady = (200,0))
+
+RtL = tk.Button(
+    root,
+    text = 'Exit',
+    bg = 'black',
+    fg = 'white',
+    font = ('Helvetica bold',int(root.winfo_screenwidth() / 32)),
+    activebackground = 'black',
+    activeforeground = 'white',
+    cursor= 'hand2',
+    width = 9,
+    command = lambda: com(2),
+).pack()
+
+
+root.mainloop()
+
+
+
 
 
     
