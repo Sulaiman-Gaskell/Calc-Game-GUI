@@ -143,7 +143,7 @@ while True:
 
     #Main game
     gameNum = 1
-    while pBCount < 1: ##################
+    while pBCount < 5: ##################
         if difficulty == 1:
             num1 = random.randint(25,100)
             num2 = random.randint(2,25)
